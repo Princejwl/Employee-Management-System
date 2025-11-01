@@ -1,0 +1,22 @@
+body {
+  background: #f8f9fa !important;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.card {
+  border-radius: 15px !important;
+}
+
+.table {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table thead th {
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+button {
+  font-weight: 500 !important;
+}
