@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Table, Button, Form, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import './Dashboard.css';
-import { getUid } from "../../utils/auth";  // ✅ added
+import "./Dashboard.css";
+import { getUid } from "../../utils/auth"; // Firebase UID
 
 const Dashboard = () => {
   const [employees, setEmployees] = useState([]);
@@ -12,7 +12,6 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
-        // ✅ get current Firebase user ID from localStorage
         const uid = getUid();
 
         if (!uid) {
@@ -21,30 +20,49 @@ const Dashboard = () => {
           return;
         }
 
-        // ✅ fetch only this user's employees from backend
         const response = await fetch(`${process.env.REACT_APP_API_URL}/api/employee/${uid}`);
+
+        // ✅ Handle non-OK responses safely
+        if (!response.ok) {
+          console.error("Backend error:", response.status);
+          setEmployees([]);
+          return;
+        }
+
         const data = await response.json();
-        setEmployees(data);
+
+        // ✅ Ensure the data is an array
+        if (Array.isArray(data)) {
+          setEmployees(data);
+        } else {
+          console.warn("⚠️ Unexpected data format:", data);
+          setEmployees([]);
+        }
+
       } catch (error) {
         console.error("Error fetching employees:", error);
+        setEmployees([]); // Prevent crash
       }
     };
+
     fetchEmployees();
-  }, [navigate]); // ✅ added navigate dependency
+  }, [navigate]);
 
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm("Kya aap sach mein delete karna chahte hain?");
     if (!confirmDelete) return;
+
     try {
       await fetch(`${process.env.REACT_APP_API_URL}/api/employee/${id}`, {
         method: "DELETE",
       });
 
-      // ✅ Re-fetch employees for same user after delete
+      // ✅ Re-fetch updated employee list
       const uid = getUid();
       const response = await fetch(`${process.env.REACT_APP_API_URL}/api/employee/${uid}`);
       const data = await response.json();
-      setEmployees(data);
+      setEmployees(Array.isArray(data) ? data : []);
+
     } catch (error) {
       console.error("Error deleting employee:", error);
     }
@@ -54,12 +72,15 @@ const Dashboard = () => {
     navigate(`/employee/${id}`);
   };
 
-  // 🔎 Filter employees by name, email or department
-  const filteredEmployees = employees.filter((emp) =>
-    emp.name.toLowerCase().includes(search.toLowerCase()) ||
-    emp.email.toLowerCase().includes(search.toLowerCase()) ||
-    emp.department.toLowerCase().includes(search.toLowerCase())
-  );
+  // ✅ Prevent filter crash if data is invalid
+  const filteredEmployees = Array.isArray(employees)
+    ? employees.filter(
+        (emp) =>
+          emp.name?.toLowerCase().includes(search.toLowerCase()) ||
+          emp.email?.toLowerCase().includes(search.toLowerCase()) ||
+          emp.department?.toLowerCase().includes(search.toLowerCase())
+      )
+    : [];
 
   return (
     <Container className="mt-5">
@@ -125,7 +146,7 @@ const Dashboard = () => {
                 ) : (
                   <tr>
                     <td colSpan="5" className="text-muted fw-bold">
-                      🚫 No employees found
+                      🚫 No employees found or unauthorized access.
                     </td>
                   </tr>
                 )}
