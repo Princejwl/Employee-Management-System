@@ -9,10 +9,11 @@ const Dashboard = () => {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
+  // ✅ Fetch employees for logged-in user
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
-        const uid = getUid();
+        const uid = getUid(); // get current logged-in user's UID
 
         if (!uid) {
           console.warn("⚠️ No user logged in — redirecting...");
@@ -20,7 +21,10 @@ const Dashboard = () => {
           return;
         }
 
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/employee/${uid}`);
+        // ✅ fetch only this user's employees from backend
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/api/employee/user/${uid}`
+        );
 
         // ✅ Handle non-OK responses safely
         if (!response.ok) {
@@ -38,7 +42,6 @@ const Dashboard = () => {
           console.warn("⚠️ Unexpected data format:", data);
           setEmployees([]);
         }
-
       } catch (error) {
         console.error("Error fetching employees:", error);
         setEmployees([]); // Prevent crash
@@ -48,6 +51,7 @@ const Dashboard = () => {
     fetchEmployees();
   }, [navigate]);
 
+  // ✅ Delete employee
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm("Kya aap sach mein delete karna chahte hain?");
     if (!confirmDelete) return;
@@ -59,20 +63,22 @@ const Dashboard = () => {
 
       // ✅ Re-fetch updated employee list
       const uid = getUid();
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/employee/${uid}`);
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/employee/user/${uid}`
+      );
       const data = await response.json();
       setEmployees(Array.isArray(data) ? data : []);
-
     } catch (error) {
       console.error("Error deleting employee:", error);
     }
   };
 
+  // ✅ Update employee
   const handleUpdate = (id) => {
     navigate(`/employee/${id}`);
   };
 
-  // ✅ Prevent filter crash if data is invalid
+  // ✅ Filter employees safely
   const filteredEmployees = Array.isArray(employees)
     ? employees.filter(
         (emp) =>
@@ -82,6 +88,7 @@ const Dashboard = () => {
       )
     : [];
 
+  // ✅ UI Part
   return (
     <Container className="mt-5">
       <Card className="shadow-lg border-0 p-4">
@@ -105,7 +112,13 @@ const Dashboard = () => {
 
         <Row>
           <Col>
-            <Table striped bordered hover responsive className="shadow-sm text-center align-middle">
+            <Table
+              striped
+              bordered
+              hover
+              responsive
+              className="shadow-sm text-center align-middle"
+            >
               <thead className="table-dark">
                 <tr>
                   <th>Name</th>
