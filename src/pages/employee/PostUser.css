@@ -1,23 +1,83 @@
+/* 🌈 Background section */
 .center-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 90vh;
+  background: linear-gradient(180deg, #f8fbff, #e6f0ff);
+  font-family: "Poppins", sans-serif;
 }
 
-.center-form Form {
-  max-width: 400px;
+/* 🧾 Form card styling */
+.center-form form {
   width: 100%;
-  padding: 20px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 32px 28px;
+  box-shadow: 0 10px 30px rgba(0, 123, 255, 0.15);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 123, 255, 0.05);
 }
 
-.center-form Form .form-control {
-  margin-bottom: 20px;
-  padding: 10px;
+/* Lift effect on hover */
+.center-form form:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(0, 123, 255, 0.25);
+}
+
+/* ✨ Heading */
+.center-form h1 {
+  font-size: 26px;
+  font-weight: 600;
+  color: #1b1b1b;
+  text-align: center;
+  margin-bottom: 25px;
+  letter-spacing: 0.5px;
+}
+
+/* 🔠 Input fields */
+.center-form .form-control {
+  border-radius: 10px;
+  border: 1px solid #d4d8f0;
+  padding: 12px 14px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Input focus */
+.center-form .form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+  outline: none;
+}
+
+/* 🧊 Submit button */
+.center-form .btn {
+  background: linear-gradient(135deg, #007bff, #00b4d8);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  padding: 12px 18px;
+  margin-top: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 12px rgba(0, 123, 255, 0.3);
+  letter-spacing: 0.3px;
+}
+
+/* Hover animation */
+.center-form .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0, 123, 255, 0.4);
+  background: linear-gradient(135deg, #00b4d8, #0077b6);
+}
+
+/* Active click effect */
+.center-form .btn:active {
+  transform: translateY(0px);
+  box-shadow: 0 3px 8px rgba(0, 123, 255, 0.25);
 }

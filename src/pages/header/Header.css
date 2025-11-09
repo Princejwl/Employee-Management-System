@@ -1,22 +1,76 @@
-/* Style the navbar background and brand */
-.navbar {
-  background-color: #343a40;
+/* 🌈 Gradient header background */
+.custom-navbar {
+  background: linear-gradient(90deg, #007bff, #00b4d8);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 12px 0;
 }
 
-.navbar .navbar-brand {
+/* 📦 Navbar container */
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 🧠 Brand name styling */
+.custom-navbar .brand {
   color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: transform 0.3s ease;
+  text-decoration: none;
 }
 
-/* Style the navigation links */
-.navbar .nav-link {
-  color: #fff !important; /* White text color */
-  text-decoration: none !important; /* Remove underline */
-  margin-right: 20px; /* Add margin between links */
+.custom-navbar .brand:hover {
+  transform: translateY(-2px);
 }
 
-/* Add media query for small screens */
-@media (max-width: 576px) {
-  .navbar .nav-link {
-    margin-right: 0; /* Remove margin for small screens */
+/* 🔘 Navbar buttons (both) */
+.nav-btn {
+  color: #ffffff !important;
+  font-weight: 500;
+  font-size: 15px;
+  margin-left: 18px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  position: relative;
+}
+
+/* 🪄 Hover animation */
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  color: #fff !important;
+}
+
+/* 💡 Special button ("Post Employee") */
+.nav-btn.special {
+  background: #fff;
+  color: #007bff !important;
+  font-weight: 600;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 123, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.nav-btn.special:hover {
+  background: #f0f8ff;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+}
+
+/* 🧭 Responsive spacing */
+@media (max-width: 768px) {
+  .nav-btn {
+    margin: 8px 0;
+    display: block;
+    text-align: center;
+  }
+
+  .nav-btn.special {
+    margin-top: 10px;
   }
 }

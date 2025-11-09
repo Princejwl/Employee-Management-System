@@ -1,23 +1,93 @@
+/* 🌈 Background matches global app style */
 .center-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 90vh;
+  min-height: 90vh;
+  background: linear-gradient(180deg, #f0f7ff 0%, #e3eeff 50%, #d6e8ff 100%);
+  font-family: "Poppins", sans-serif;
+  transition: background 0.5s ease;
 }
 
-.center-form Form {
-  max-width: 400px;
+/* 🧾 Form card */
+.update-form {
+  position: relative;
   width: 100%;
-  padding: 20px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 35px 28px;
+  border: 1px solid rgba(0, 123, 255, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 123, 255, 0.15);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
 }
 
-.center-form Form .form-control {
-  margin-bottom: 20px;
-  padding: 10px;
+/* 🧭 Card hover lift effect */
+.update-form:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(0, 123, 255, 0.25);
+}
+
+/* 🧠 Title */
+.center-form h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #1b1b1b;
+  text-align: center;
+  margin-bottom: 25px;
+  letter-spacing: 0.4px;
+}
+
+/* 🔠 Input fields */
+.update-form .form-control {
+  border-radius: 10px;
+  border: 1px solid #d4d8f0;
+  padding: 12px 14px;
+  font-size: 15px;
+  background: #fdfdff;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* 🔷 Focus glow */
+.update-form .form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+  outline: none;
+  background: #ffffff;
+}
+
+/* 💡 Update button styling */
+.update-form .btn {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  padding: 12px 18px;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 14px rgba(40, 167, 69, 0.3);
+  letter-spacing: 0.4px;
+}
+
+/* 💫 Button hover effect */
+.update-form .btn:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #20c997, #198754);
+  box-shadow: 0 10px 20px rgba(40, 167, 69, 0.4);
+}
+
+/* 🧊 Active state */
+.update-form .btn:active {
+  transform: translateY(0px);
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.25);
+}
+
+/* ✨ Smooth transitions for all elements */
+* {
+  transition: all 0.2s ease-in-out;
 }
