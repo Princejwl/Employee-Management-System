@@ -1,22 +1,38 @@
-body {
-  background: #f8f9fa !important;
-  font-family: "Segoe UI", sans-serif;
+.dashboard-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 25px 20px;
+  box-shadow: 0 10px 30px rgba(0, 123, 255, 0.15);
+  width: 90%;
+  max-width: 900px;
+  margin: auto;
+  overflow-x: auto;
 }
 
-.card {
-  border-radius: 15px !important;
+.dashboard-title {
+  text-align: center;
+  font-weight: 600;
+  font-size: 26px;
+  color: #007bff;
+  margin-bottom: 20px;
 }
 
-.table {
-  border-radius: 10px;
-  overflow: hidden;
+.search-bar {
+  width: 100%;
+  max-width: 400px;
+  margin: 10px auto 20px auto;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
-.table thead th {
-  font-size: 16px;
-  letter-spacing: 0.5px;
+table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-button {
-  font-weight: 500 !important;
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
 }
