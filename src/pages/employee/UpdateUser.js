@@ -38,7 +38,7 @@ const UpdateUser = () => {
         e.preventDefault();
         try {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/api/employee/${id}`, {
-                method: "PATCH",
+                method: "put",
                 headers: {
                     "Content-Type": "application/json",
                 },
