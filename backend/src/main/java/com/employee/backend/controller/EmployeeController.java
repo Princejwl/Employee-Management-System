@@ -12,7 +12,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/employee")
 @CrossOrigin(origins = { "http://localhost:3000",
-        "https://employee-frontend-flame.vercel.app" }, allowedHeaders = "*", methods = { RequestMethod.GET,
+        "https://employee-frontend-flame.vercel.app",
+        "https://employee-frontend-465y.onrender.com" }, allowedHeaders = "*", methods = { RequestMethod.GET,
                 RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS })
 public class EmployeeController {
 
