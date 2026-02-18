@@ -11,7 +11,9 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/employee")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = { "http://localhost:3000",
+        "https://employee-frontend-flame.vercel.app" }, allowedHeaders = "*", methods = { RequestMethod.GET,
+                RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS })
 public class EmployeeController {
 
     private final EmployeeRepository employeeRepository;
@@ -39,7 +41,7 @@ public class EmployeeController {
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
         Optional<Employee> employee = employeeRepository.findById(id);
         return employee.map(emp -> new ResponseEntity<>(emp, HttpStatus.OK))
-                       .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     // ✅ GET - Get employees by Firebase userId
